@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:15-alpine:///maestria_courses_test
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: "ChaveSecretaParaTestesNaoUseEmProducao1234567890"
+
+logging:
+  level:
+    org.springframework: WARN
+    org.hibernate: WARN
+    br.com.maestria: INFO

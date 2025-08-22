@@ -38,6 +38,7 @@ public class CourseServiceImpl implements CourseService{
         Course newCourse = Course.builder()
                 .title(createCourseRequest.getTitle())
                 .description(createCourseRequest.getDescription())
+                .price(createCourseRequest.getPrice())
                 .instructorId(instructorId)
                 .tenantId(tenantId)
                 .build();
@@ -72,6 +73,7 @@ public class CourseServiceImpl implements CourseService{
 
         existingCourse.setTitle(request.getTitle());
         existingCourse.setDescription(request.getDescription());
+        existingCourse.setPrice(request.getPrice());
 
         Course updatedCourse = courseRepository.save(existingCourse);
         log.info("Curso atualizado com sucesso! ID: {}", updatedCourse.getId());

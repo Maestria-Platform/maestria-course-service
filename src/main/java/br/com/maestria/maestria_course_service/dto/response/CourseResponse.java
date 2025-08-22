@@ -2,6 +2,8 @@ package br.com.maestria.maestria_course_service.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -11,6 +13,7 @@ public class CourseResponse {
     private UUID id;
     private String title;
     private String description;
+    private BigDecimal price;
     private UUID instructorId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

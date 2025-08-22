@@ -71,6 +71,7 @@ public class CourseController {
                 .id(course.getId())
                 .title(course.getTitle())
                 .description(course.getDescription())
+                .price(course.getPrice())
                 .instructorId(course.getInstructorId())
                 .createdAt(course.getCreatedAt())
                 .updatedAt(course.getUpdatedAt())

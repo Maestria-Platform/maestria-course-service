@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.security.oauth2.jwt.Jwt;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -61,6 +62,7 @@ class CourseServiceImplTest {
             CreateCourseRequest request = new CreateCourseRequest();
             request.setTitle("Novo Curso de Java");
             request.setDescription("Descrição do curso de Java");
+            request.setPrice(new BigDecimal("99.90"));
 
             when(courseRepository.save(any(Course.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
@@ -68,6 +70,7 @@ class CourseServiceImplTest {
 
             assertNotNull(result);
             assertEquals(request.getTitle(), result.getTitle());
+            assertEquals(request.getPrice(), result.getPrice());
             assertEquals(instructorId, result.getInstructorId());
             assertEquals(tenantId, result.getTenantId());
             verify(courseRepository, times(1)).save(any(Course.class));
@@ -138,6 +141,7 @@ class CourseServiceImplTest {
             UpdateCourseRequest request = new UpdateCourseRequest();
             request.setTitle("Curso Atualizado");
             request.setDescription("Nova descrição");
+            request.setPrice(new BigDecimal("129.99"));
 
             Course existingCourse = Course.builder().id(courseId).title("Título Antigo").description("Descrição Antiga").build();
             when(courseRepository.findById(courseId)).thenReturn(Optional.of(existingCourse));
@@ -148,6 +152,7 @@ class CourseServiceImplTest {
             assertNotNull(updatedCourse);
             assertEquals(request.getTitle(), updatedCourse.getTitle());
             assertEquals(request.getDescription(), updatedCourse.getDescription());
+            assertEquals(request.getPrice(), updatedCourse.getPrice());
             verify(courseRepository, times(1)).findById(courseId);
             verify(courseRepository, times(1)).save(existingCourse);
         }
